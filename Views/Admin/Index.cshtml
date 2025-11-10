@@ -1,0 +1,15 @@
+﻿@model List<Article>
+
+<h2>Posts</h2>
+<a href="/Admin/New">+Add</a>
+<ul>
+	@foreach(var art in Model)
+	{
+		<li>
+			<a asp-controller="Admin" asp-action="Edit" asp-route-id="@art.Id">
+				<h3>@art.Title</h3>
+			</a>
+			<form action="/Admin/Delete/@art.Id" method="post"><button type="submit">Eliminar</button></form>
+		</li>
+	}
+</ul>

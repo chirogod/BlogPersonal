@@ -1,0 +1,10 @@
+﻿<a href="/Admin">Volver</a>
+<form action="/Admin/Edit" method="post">
+	<label>Titulo:</label>
+	<input type="text" name="Title" value="@ViewData["Title"]"/>
+	<label>Fecha:</label>
+	<input type="date" name="Date" value="@ViewData["PublishedDate"]"  />
+	<label>Contenido:</label>
+	<textarea name="Content">@ViewData["Content"]</textarea>
+	<button type="submit">Editar Articulo</button>
+</form>

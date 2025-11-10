@@ -1,0 +1,14 @@
+﻿@model List<Article>
+
+<h1>Personal Blog</h1>
+<ul>
+	@foreach(var art in Model)
+	{
+		
+		<li>
+			<a href="Home/Detail/@art.Id">
+				@art.Title @art.PublishedDate.ToString("dd/MM/yyyy")
+			</a>
+		</li>
+	}
+</ul>
