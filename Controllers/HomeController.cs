@@ -16,6 +16,7 @@ namespace BlogPersonal.Controllers
 
         public IActionResult Index()
         {
+            Response.Headers.Append("WWW-Authenticate", "Basic realm=\"Admin\"");
             string path = @"C:\Users\augus\source\repos\BlogPersonal\";
             List<Article> articulos = new List<Article>();
             string[] directories = Directory.GetFiles(path, "*.txt");

@@ -25,7 +25,7 @@ namespace BlogPersonal.Security
         {
             if(!Request.Headers.ContainsKey("Authorization"))
             {
-                Response.Headers.Append("WWW-Authenticate", "Basic realm=\"Tu Dominio\"");
+                Response.Headers.Append("WWW-Authenticate", "Basic realm=\"Admin\""); //esto hace q se muestre el popup
                 return AuthenticateResult.Fail("No hay header");
             }
 
@@ -46,8 +46,8 @@ namespace BlogPersonal.Security
 
             if(!result)
             {
-                Response.Headers.Append("WWW-Authenticate", "Basic realm=\"Tu Dominio\"");
-                return AuthenticateResult.Fail("Usuario o contrase;a invalida");
+                Response.Headers.Append("WWW-Authenticate", "Basic realm=\"Admin\"");
+                return AuthenticateResult.Fail("Usuario o contrasenia invalida");
             }
 
             var claims = new Claim[] {
