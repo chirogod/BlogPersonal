@@ -1,5 +1,6 @@
-Es una aplicaicon web que funciona como blog personal, donde se crea, edita o elimmina posts.
-URL de la pagina del proyecto: https://roadmap.sh/projects/personal-blog
+Es una aplicacion web que funciona como blog personal, donde se crea, edita o elimmina posts.
+URL de la pagina del proyecto: https://roadmap.sh/projects/personal-blog 
+El frontend no es lo mio, lo siento.
 
 # Requisitos
 
