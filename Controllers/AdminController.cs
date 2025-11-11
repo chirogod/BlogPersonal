@@ -1,11 +1,13 @@
 ﻿using BlogPersonal.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection;
 using System;
 using System.IO;
+using System.Reflection;
 
 namespace BlogPersonal.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
 
