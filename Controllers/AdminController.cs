@@ -13,7 +13,7 @@ namespace BlogPersonal.Controllers
 
         public IActionResult Index()
         {
-            string path = @"C:\Users\augus\source\repos\BlogPersonal\";
+            string path = Directory.GetCurrentDirectory();
             Article art = new Article();
             List<Article> _articles = new List<Article>();
 
@@ -42,7 +42,7 @@ namespace BlogPersonal.Controllers
         [HttpPost]
         public IActionResult New([Bind("Title, PublishedDate,Content")]Article article)
         {
-            string path = @"C:\Users\augus\source\repos\BlogPersonal\";
+            string path = Directory.GetCurrentDirectory();
             string[] directories = Directory.GetFiles(path, "*.txt");
             int lastId = 0;
             foreach(var dir in directories){
@@ -60,7 +60,7 @@ namespace BlogPersonal.Controllers
                 PublishedDate = article.PublishedDate,
                 Content = article.Content
             };
-            path +=  art.Id + ".txt";
+            path +=  @"\"+art.Id + ".txt";
             if (!System.IO.File.Exists(path))
             {
                 using StreamWriter sw = System.IO.File.CreateText(path);
@@ -75,7 +75,8 @@ namespace BlogPersonal.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            string path = @"C:\Users\augus\source\repos\BlogPersonal\" + id + ".txt";
+            string path = Directory.GetCurrentDirectory();
+            path += @"\" + id + ".txt";
             if (System.IO.File.Exists(path))
             {
                 string[] lines = System.IO.File.ReadAllLines(path);
@@ -93,7 +94,7 @@ namespace BlogPersonal.Controllers
             }
             else
             {
-                ViewData["Error"] = "Article not found.";
+                return RedirectToAction("Index");
             }
             return View();
         }
@@ -108,7 +109,8 @@ namespace BlogPersonal.Controllers
                 PublishedDate = article.PublishedDate,
                 Content = article.Content
             };
-            string path = @"C:\Users\augus\source\repos\BlogPersonal\" + art.Id + ".txt";
+            string path = Directory.GetCurrentDirectory();
+            path += @"\" + art.Id + ".txt";
             if (System.IO.File.Exists(path))
             {
                 System.IO.File.Delete(path);
@@ -118,13 +120,14 @@ namespace BlogPersonal.Controllers
                 sw.WriteLine(art.PublishedDate);
                 sw.WriteLine(art.Content);
             }
-            return View();
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            string path = @"C:\Users\augus\source\repos\BlogPersonal\"+id+".txt";
+            string path = Directory.GetCurrentDirectory();
+            path += @"\" + id + ".txt";
             System.IO.File.Delete(path);
             return RedirectToAction("Index");
         }

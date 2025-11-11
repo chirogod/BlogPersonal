@@ -1,5 +1,6 @@
 using System.Data;
 using System.Diagnostics;
+using System.Reflection.Metadata;
 using BlogPersonal.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,8 +17,7 @@ namespace BlogPersonal.Controllers
 
         public IActionResult Index()
         {
-            Response.Headers.Append("WWW-Authenticate", "Basic realm=\"Admin\"");
-            string path = @"C:\Users\augus\source\repos\BlogPersonal\";
+            string path = Directory.GetCurrentDirectory();
             List<Article> articulos = new List<Article>();
             string[] directories = Directory.GetFiles(path, "*.txt");
             foreach(var dir in directories)
@@ -39,7 +39,9 @@ namespace BlogPersonal.Controllers
 
         public IActionResult Detail(int id)
         {
-            string path = @"C:\Users\augus\source\repos\BlogPersonal\"+id+".txt";
+            string path = Directory.GetCurrentDirectory();
+            path += @"\"+id + ".txt";
+            Trace.WriteLine("monhi: "+path);
             var lines = System.IO.File.ReadAllLines(path);
             ViewData["Id"] = lines[0];
             ViewData["Title"] = lines[1];

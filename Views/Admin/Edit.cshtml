@@ -1,10 +1,11 @@
 ﻿<a href="/Admin">Volver</a>
 <form action="/Admin/Edit" method="post">
+	<input type="hidden" name="Id" value="@ViewData["Id"]" />
 	<label>Titulo:</label>
-	<input type="text" name="Title" value="@ViewData["Title"]"/>
+	<input type="text" name="Title" required value="@ViewData["Title"]"/>
 	<label>Fecha:</label>
-	<input type="date" name="Date" value="@ViewData["PublishedDate"]"  />
+	<input type="date" name="PublishedDate" required value="@(((DateOnly)ViewData["PublishedDate"]).ToString("yyyy-MM-dd"))"/>
 	<label>Contenido:</label>
-	<textarea name="Content">@ViewData["Content"]</textarea>
+	<textarea required name="Content">@ViewData["Content"]</textarea>
 	<button type="submit">Editar Articulo</button>
 </form>
